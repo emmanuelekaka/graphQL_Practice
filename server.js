@@ -12,7 +12,10 @@ const books=[
     {id:1,name:"Harray Potter", genre:"Magic", authorId:1},
     {id:2,name:"Morbious", genre:"Vampire Stories", authorId:3},
     {id:3,name:"Avengers", genre:"Sci-Fi", authorId:2},
-    {id:4,name:"Mask", genre:"Commedy", authorId:4}
+    {id:4,name:"Mask", genre:"Commedy", authorId:4},
+    {id:5,name:"1000words", genre:"Commedy", authorId:4},
+    {id:6,name:"million lies", genre:"Commedy", authorId:4},
+    {id:7,name:"Dream", genre:"Action Thriller", authorId:4}
 ]
 
 const BookType = new GraphQLObjectType({
@@ -36,7 +39,13 @@ const AuthorType = new GraphQLObjectType({
         description:'Is an Author',
         fields:()=>({
             id:{type:new GraphQLNonNull(GraphQLInt)},
-            name:{type:new GraphQLNonNull(GraphQLString)}      
+            name:{type:new GraphQLNonNull(GraphQLString)},
+            books:{
+                type:new GraphQLList(BookType),
+                resolve: (Author)=>{
+                    return books.filter(book=>book.authorId === Author.id)
+                }
+            }      
         })
 })
 
