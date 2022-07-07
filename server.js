@@ -21,23 +21,24 @@ const BookType = new GraphQLObjectType({
         fields:()=>({
             id:{type:new GraphQLNonNull(GraphQLInt)},
             name:{type:new GraphQLNonNull(GraphQLString)},
-            genre:{type:GraphQLString},
+            genre:{type:new GraphQLNonNull(GraphQLString)},
             authorId:{type:new GraphQLNonNull(GraphQLInt)},
-            author:{type:AuthorType}
+            author:{type:AuthorType,
+                resolve: (Book)=>{
+                    return authors.find(author=>author.id === Book.authorId)
+                }
+            }
 
         })
 })
-// const BookType = new GraphQLSchema({
-//     query:new GraphQLObjectType({
-//         name:'Book',
-//         fields:()=>({
-//             // id:{type:GraphQLString},
-//             name:{type:GraphQLString, resolve:()=>'This is Emma Emma'},
-//             genre:{type:GraphQLString}
-//         })
-//     })
-// })
-
+const AuthorType = new GraphQLObjectType({
+        name:'Author',
+        description:'Is an Author',
+        fields:()=>({
+            id:{type:new GraphQLNonNull(GraphQLInt)},
+            name:{type:new GraphQLNonNull(GraphQLString)}      
+        })
+})
 
 
 // advancing
@@ -48,13 +49,17 @@ const RootQuery = new GraphQLObjectType({
         books:{
             type:new GraphQLList(BookType),
             description:'List of all Books',
-            resolve: ()=>book
+            resolve: ()=>books
+         },
+        authors:{
+            type:new GraphQLList(AuthorType),
+            description:'List of all Authors',
+            resolve: ()=>authors
         }
     })
 })
 const schema = new GraphQLSchema({
     query:RootQuery
-
 })
 
 const app = express()
