@@ -1,13 +1,13 @@
-import express from 'express'
-import  {ApolloServer,  gql} from 'apollo-server-express'
+const express = require("express");
+const {ApolloServer,  gql} = require('apollo-server-express');
 
 const  typeDefs =  gql`
-    type:query{
+    type Query {
         hello:String!
     }
 `
 const  resolvers = {
-    Query:{
+    Query: {
         hello: ()=>{
             return 'Hello Emma'
         },
@@ -21,6 +21,7 @@ async function startserver(){
         resolvers
     })
     await apolloserver.start()
+    // we can add in a custome link to apollo server
     apolloserver.applyMiddleware({app:app})
     app.use((req, res)=>{
         res.send('Hello there')

@@ -1,0 +1,28 @@
+now where is the problem?
+All along it has not been running  maybe letme run it in the terminal in vs en u see.
+ok i changed it to server not server
+There now is where the prob is. Okay
+
+show me the actaully error your were getting last time?
+
+is this the error?yes
+
+you can not mix commonjs with es6 or es2015 when it's not configured to 
+use es6. But when you config it with es6 you can use commonjs no problem.
+
+It's okay now. thanks very much but i didn't notice where the problem was.
+Oh okay. let me recreate it for you .
+
+first problem was the ":" which is not required there.
+second problem is that the name "Query" does exist in graphql type because it was written in lowcase.
+
+"Query" defined in resolvers, but not in schema
+
+so basically what it's say is that Query is not define in schema types which is true because as of now it's written in lowcase letter. so let's change that.
+
+all good now?Thanks very much sir for the time
+your welcome no problem.
+
+Okay
+i think this is goodnight now right?ya a good nyt too
+alright. bye bye
