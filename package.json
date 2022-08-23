@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "serve",
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon serve.js"
+    "dev": "nodemon serve.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +17,7 @@
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
+    "mongoose": "^6.5.1",
     "nodemon": "^2.0.19",
     "yarn": "^1.22.19"
   }
